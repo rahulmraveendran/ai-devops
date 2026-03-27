@@ -88,7 +88,7 @@ if __name__ == "__main__":
     parser.add_argument("--pr-number",  required=True)
     parser.add_argument("--repo",       required=True)
     parser.add_argument("--token",      required=True)
-    parser.add_argument("--ollama-url", default="http://localhost:11434")
+    parser.add_argument("--ollama-url", default="http://localhost:8000")
     args = parser.parse_args()
 
     print(f"[1/3] Fetching diff for PR #{args.pr_number}...")
