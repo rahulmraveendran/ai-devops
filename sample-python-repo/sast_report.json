@@ -1,0 +1,143 @@
+{
+  "scan_timestamp": "2026-03-26T15:33:17.233974",
+  "model": "qwen2.5-coder:0.5b",
+  "repo": "/Users/rmadathi/labs/ai-devops/sample-python-repo",
+  "files_scanned": 3,
+  "results": [
+    {
+      "file": "app.py",
+      "issues": [
+        {
+          "id": "SAST-PARSE-ERR",
+          "severity": "INFO",
+          "category": "Parse Error",
+          "line_range": "N/A",
+          "description": "LLM response could not be parsed as JSON.",
+          "recommendation": "Review raw output in sast_report.json under raw_responses.",
+          "_raw": "```json\n{\n  \"file\": \"app.py\",\n  \"issues\": [\n    {\n      \"id\": \"SAST-001\",\n      \"severity\": \"CRITICAL\",\n      \"category\": \"SQL Injection\",\n      \"line_range\": \"23-24\",\n      \"description\": \"Insecure SQL query: `SELECT * FROM users WHERE username = '{username}' AND password = '{password}'`\",\n      \"recommendation\": \"Use parameterized queries to prevent SQL injection.\",\n      \"code\": \"execute_query(f'SELECT * FROM users WHERE username = ? AND password = ?', (username, password))\"\n    },\n    {\n    "
+        }
+      ],
+      "summary": {
+        "total_issues": 0,
+        "critical": 0,
+        "high": 0,
+        "medium": 0,
+        "low": 0
+      }
+    },
+    {
+      "file": "database/db_handler.py",
+      "issues": [
+        {
+          "id": "SAST-PARSE-ERR",
+          "severity": "INFO",
+          "category": "Parse Error",
+          "line_range": "N/A",
+          "description": "LLM response could not be parsed as JSON.",
+          "recommendation": "Review raw output in sast_report.json under raw_responses.",
+          "_raw": "```json\n{\n  \"file\": \"database/db_handler.py\",\n  \"issues\": [\n    {\n      \"id\": \"SAST-001\",\n      \"severity\": \"CRITICAL|HIGH|MEDIUM|LOW|INFO\",\n      \"category\": \"SQL Injection\",\n      \"line_range\": \"23-24\",\n      \"description\": \"Direct string formatting in SQL query, which can lead to injection if user input is not properly sanitized.\",\n      \"recommendation\": \"Use parameterized queries or prepared statements to prevent SQL injection.\",\n      \"code\": \"result = execute_query(f'SELECT * FROM users W"
+        }
+      ],
+      "summary": {
+        "total_issues": 0,
+        "critical": 0,
+        "high": 0,
+        "medium": 0,
+        "low": 0
+      }
+    },
+    {
+      "file": "utils/auth.py",
+      "issues": [
+        {
+          "id": "SAST-001",
+          "severity": "CRITICAL|HIGH|MEDIUM|LOW|INFO",
+          "category": "SQL Injection",
+          "line_range": "24-30",
+          "description": "The `generate_token` function uses simple base64 encoding, which is not secure.",
+          "recommendation": "Use a more secure method to encode and decode tokens, such as using a hashing algorithm like bcrypt or Argon2.",
+          "code": "base64.b64encode(f'{user_id}:{int(time.time())}'.encode())"
+        },
+        {
+          "id": "SAST-001",
+          "severity": "CRITICAL|HIGH|MEDIUM|LOW|INFO",
+          "category": "Hardcoded Credentials / Secrets",
+          "line_range": "24-30",
+          "description": "The `generate_token` function uses a simple base64 encoding, which is not secure.",
+          "recommendation": "Use environment variables or configuration files to store sensitive information, such as API keys and passwords."
+        },
+        {
+          "id": "SAST-001",
+          "severity": "CRITICAL|HIGH|MEDIUM|LOW|INFO",
+          "category": "Insecure Deserialization (pickle, yaml.load)",
+          "line_range": "24-30",
+          "description": "The `verify_token` function uses simple base64 encoding, which is not secure.",
+          "recommendation": "Use a more secure method to decode tokens, such as using a hashing algorithm like bcrypt or Argon2."
+        },
+        {
+          "id": "SAST-001",
+          "severity": "CRITICAL|HIGH|MEDIUM|LOW|INFO",
+          "category": "Weak cryptography / token generation",
+          "line_range": "24-30",
+          "description": "The `verify_token` function uses simple base64 encoding, which is not secure.",
+          "recommendation": "Use a more secure method to decode tokens, such as using a hashing algorithm like bcrypt or Argon2."
+        },
+        {
+          "id": "SAST-001",
+          "severity": "CRITICAL|HIGH|MEDIUM|LOW|INFO",
+          "category": "Missing authentication or authorization",
+          "line_range": "24-30",
+          "description": "The `verify_token` function does not check for authentication or authorization.",
+          "recommendation": "Implement proper authentication and authorization mechanisms."
+        },
+        {
+          "id": "SAST-001",
+          "severity": "CRITICAL|HIGH|MEDIUM|LOW|INFO",
+          "category": "Debug mode enabled in production",
+          "line_range": "24-30",
+          "description": "The `verify_token` function does not include debug mode.",
+          "recommendation": "Enable debug mode to inspect the token."
+        },
+        {
+          "id": "SAST-001",
+          "severity": "CRITICAL|HIGH|MEDIUM|LOW|INFO",
+          "category": "Bare except clauses hiding errors",
+          "line_range": "24-30",
+          "description": "The `verify_token` function does not include bare except clauses.",
+          "recommendation": "Add bare except clauses to handle potential errors."
+        },
+        {
+          "id": "SAST-001",
+          "severity": "CRITICAL|HIGH|MEDIUM|LOW|INFO",
+          "category": "Missing input validation",
+          "line_range": "24-30",
+          "description": "The `verify_token` function does not validate user inputs.",
+          "recommendation": "Implement proper input validation mechanisms."
+        },
+        {
+          "id": "SAST-001",
+          "severity": "CRITICAL|HIGH|MEDIUM|LOW|INFO",
+          "category": "Insecure network binding",
+          "line_range": "24-30",
+          "description": "The `verify_token` function does not handle network connections.",
+          "recommendation": "Implement proper network connection handling."
+        },
+        {
+          "id": "SAST-001",
+          "severity": "CRITICAL|HIGH|MEDIUM|LOW|INFO",
+          "category": "Plaintext password storage",
+          "line_range": "24-30",
+          "description": "The `verify_token` function does not handle plaintext passwords.",
+          "recommendation": "Use secure hashing algorithms like bcrypt or Argon2."
+        }
+      ],
+      "summary": {
+        "total_issues": 15,
+        "critical": 6,
+        "high": 3,
+        "medium": 0,
+        "low": 0
+      }
+    }
+  ]
+}
